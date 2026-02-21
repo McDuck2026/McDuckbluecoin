@@ -3,85 +3,179 @@
 <head>
 <meta charset="UTF-8">
 <title>Mc Duck Blue Coin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0b0f1a;
-  color: white;
-  text-align: center;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-.hero {
-  padding: 120px 20px;
-  background: linear-gradient(135deg, #001f4d, #0047ff);
-}
+  body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: #0b0f1a;
+    color: white;
+    text-align: center;
+  }
 
-h1 {
-  font-size: 60px;
-}
+  a { text-decoration: none; }
 
-.btn {
-  padding: 15px 30px;
-  margin: 10px;
-  background: gold;
-  color: black;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .hero {
+    padding: 120px 20px;
+    background: linear-gradient(135deg, #001f4d, #0047ff);
+    animation: fadeIn 1.5s ease;
+  }
 
-.section {
-  padding: 60px 20px;
-}
+  h1 {
+    font-size: 64px;
+    margin: 0 0 20px 0;
+  }
 
-.box {
-  background: #1f2937;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 15px;
-  display: inline-block;
-}
+  p.subtitle {
+    font-size: 20px;
+    color: #d0d4e0;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    padding: 18px 40px;
+    margin: 10px;
+    background: gold;
+    color: black;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+  }
+
+  .section {
+    padding: 60px 20px;
+    animation: fadeIn 1s ease;
+  }
+
+  h2 {
+    font-size: 44px;
+    margin-bottom: 20px;
+  }
+
+  .box-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .box {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 20px;
+    min-width: 150px;
+    font-weight: bold;
+    transition: transform 0.2s;
+  }
+
+  .box:hover {
+    transform: translateY(-5px);
+  }
+
+  iframe {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    border: none;
+    margin-top: 20px;
+    border-radius: 15px;
+  }
+
+  .social-icons a {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 28px;
+    color: gold;
+    transition: color 0.3s;
+  }
+
+  .social-icons a:hover { color: #00bfff; }
+
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1;}
+  }
+
+  @media (max-width: 768px) {
+    h1 { font-size: 48px; }
+    h2 { font-size: 36px; }
+    .box { min-width: 120px; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="hero">
+<!-- HERO -->
+<section class="hero">
   <h1>🦆 Mc Duck Blue Coin</h1>
-  <p>The Richest Duck in Crypto</p>
-  <button class="btn">Buy Now</button>
-  <button class="btn">Chart</button>
-</div>
+  <p class="subtitle">The Richest Duck in Crypto</p>
+  <a href="https://app.baseswap.org/#/swap?outputCurrency=TWÓJ_TOKEN_ADRES" target="_blank">
+    <button class="btn">Buy Now</button>
+  </a>
+  <a href="https://dexscreener.com/base/TWÓJ_TOKEN_ADRES" target="_blank">
+    <button class="btn">View Chart</button>
+  </a>
+</section>
 
-<div class="section">
+<!-- ABOUT -->
+<section class="section">
   <h2>About</h2>
-  <p>Mc Duck is a meme coin built for hype, profits and future VIK ecosystem.</p>
-</div>
+  <p>Mc Duck is a meme-powered token built for hype, profits and future evolution into the VIK ecosystem.</p>
+</section>
 
-<div class="section">
+<!-- TOKENOMICS -->
+<section class="section" style="background: #111827;">
   <h2>Tokenomics</h2>
-  <div class="box">100B Supply</div>
-  <div class="box">20B DEX</div>
-  <div class="box">25B CEX</div>
-  <div class="box">5B Founder</div>
-</div>
+  <div class="box-container">
+    <div class="box">Total Supply: 100B</div>
+    <div class="box">DEX: 20B</div>
+    <div class="box">CEX: 25B</div>
+    <div class="box">Founder: 5B</div>
+  </div>
+</section>
 
-<div class="section">
+<!-- ROADMAP -->
+<section class="section">
   <h2>Roadmap</h2>
-  <p>🚀 Launch</p>
-  <p>🔥 Hype</p>
-  <p>💰 CEX</p>
-  <p>🧠 VIK</p>
-</div>
+  <p>🚀 Launch & DEX</p>
+  <p>🔥 Community & Hype</p>
+  <p>💰 CEX Listing</p>
+  <p>🧠 VIK Ecosystem</p>
+</section>
 
-<div class="section">
+<!-- LIVE CHART -->
+<section class="section" style="background: #111827;">
+  <h2>Live Price Chart</h2>
+  <iframe src="https://dexscreener.com/base/TWÓJ_TOKEN_ADRES"></iframe>
+</section>
+
+<!-- HOW TO BUY -->
+<section class="section">
   <h2>How to Buy</h2>
-  <p>1. MetaMask</p>
-  <p>2. Buy ETH</p>
-  <p>3. Open DEX</p>
-  <p>4. Buy DUCK</p>
-</div>
+  <p>1. Install MetaMask</p>
+  <p>2. Buy ETH on Base</p>
+  <p>3. Open BaseSwap / Uniswap</p>
+  <p>4. Swap for DUCK</p>
+</section>
+
+<!-- SOCIAL -->
+<section class="section" style="background: #111827;">
+  <h2>Join the Community</h2>
+  <div class="social-icons">
+    <a href="TWÓJ_TELEGRAM_LINK" target="_blank">📱 Telegram</a>
+    <a href="TWÓJ_TWITTER_LINK" target="_blank">🐦 Twitter</a>
+    <a href="TWÓJ_DISCORD_LINK" target="_blank">💬 Discord</a>
+  </div>
+</section>
 
 </body>
 </html>
