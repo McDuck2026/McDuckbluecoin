@@ -37,6 +37,9 @@
     cursor: pointer;
     border-radius: 15px;
     transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4); }
@@ -78,13 +81,22 @@
 
 <!-- HERO -->
 <section class="hero">
- <h1> Mc Duck Blue Coin</h1>
+  <img src="mcduck-logo.png" alt="Mc Duck Logo" style="width:120px; margin-bottom:20px;">
+  <h1>🦆 Mc Duck Blue Coin</h1>
   <p class="subtitle">The Richest Duck in Crypto</p>
+
   <a href="https://app.baseswap.org/#/swap?outputCurrency=TWÓJ_TOKEN_ADRES" target="_blank">
-    <button class="btn">Buy Now</button>
+    <button class="btn">
+      <img src="uniswap-logo.png" alt="Uniswap" style="width:24px; vertical-align:middle; margin-right:10px;">
+      Buy Now
+    </button>
   </a>
-  <a href="https://dexscreener.com/base/TWÓJ_TOKEN_ADRES" target="_blank">
-    <button class="btn">View Chart</button>
+
+  <a href="https://dexscreener.com/base/0xF51393C962223327251484ae53C5aa8c5D932126" target="_blank">
+    <button class="btn">
+      <img src="base-logo.png" alt="Base" style="width:24px; vertical-align:middle; margin-right:10px;">
+      View Chart
+    </button>
   </a>
 </section>
 
@@ -117,15 +129,19 @@
 <!-- LIVE CHART -->
 <section class="section" style="background: #111827;">
   <h2>Live Price Chart</h2>
-  <iframe src="https://dexscreener.com/base/TWÓJ_TOKEN_ADRES"></iframe>
+  <iframe src="https://dexscreener.com/base/0xF51393C962223327251484ae53C5aa8c5D932126"></iframe>
 </section>
 
 <!-- HOW TO BUY -->
 <section class="section">
   <h2>How to Buy</h2>
   <p>1. Install MetaMask</p>
-  <p>2. Buy ETH on Base</p>
-  <p>3. Open BaseSwap / Uniswap</p>
+  <p>2. Buy ETH on Base 
+     <img src="base-logo.png" alt="Base" style="width:24px; vertical-align:middle; margin-left:5px;">
+  </p>
+  <p>3. Open BaseSwap / Uniswap 
+     <img src="uniswap-logo.png" alt="Uniswap" style="width:24px; vertical-align:middle; margin-left:5px;">
+  </p>
   <p>4. Swap for DUCK</p>
 </section>
 
