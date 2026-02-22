@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>McDuck Blue Coin</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* --- Global --- */
     body {
@@ -12,9 +13,10 @@
       font-family: 'Press Start 2P', cursive;
       background: linear-gradient(135deg, #0A2A5B, #1B4F9C);
       color: #fff;
+      overflow-x: hidden;
     }
     a { text-decoration: none; color: inherit; }
-    section { padding: 80px 20px; text-align: center; }
+    section { padding: 80px 20px; text-align: center; position: relative; }
 
     /* --- Hero --- */
     #hero {
@@ -55,37 +57,62 @@
       50% { transform: translateY(-20px); }
     }
 
+    /* --- Flying Coins --- */
+    .coin {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: url('https://i.ibb.co/Fxv0ZxY/coin.png') no-repeat center/contain;
+      pointer-events: none;
+      animation: fly linear infinite;
+    }
+    @keyframes fly {
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity:1; }
+      100% { transform: translateY(-100px) translateX(200px) rotate(360deg); opacity:0; }
+    }
+
     /* --- Sections --- */
     h2 { font-size: 2em; margin-bottom: 20px; }
     p { max-width: 700px; margin: 0 auto 20px; line-height: 1.6; }
 
-    /* Tokenomika */
-    .tokenomics {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 40px;
-    }
-    .tokenomics div {
-      background: rgba(255, 215, 0, 0.1);
-      border-radius: 15px;
-      padding: 20px;
-      width: 200px;
-    }
+    /* Tokenomika - wykres */
+    #tokenChartContainer { max-width: 400px; margin: 40px auto; }
 
-    /* Roadmap */
+    /* Roadmap grafika */
     .roadmap {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      gap: 30px;
+      position: relative;
     }
-    .roadmap div {
+    .roadmap::before {
+      content: '';
+      position: absolute;
+      width: 4px;
+      height: 100%;
+      background: #FFD700;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+    }
+    .milestone {
+      position: relative;
+      width: 250px;
       background: rgba(255,255,255,0.1);
-      border-radius: 15px;
       padding: 15px 25px;
-      max-width: 500px;
+      border-radius: 15px;
+    }
+    .milestone::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #FFD700;
+      border-radius: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      top: -10px;
     }
 
     /* Footer */
@@ -95,6 +122,13 @@
       font-size: 0.8em;
     }
     footer a { color: #FFD700; }
+
+    /* Listing icons */
+    .dex-icons img {
+      width: 50px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 <body>
@@ -103,33 +137,66 @@
   <section id="hero">
     <h1>McDuck Blue Coin</h1>
     <img src="https://i.ibb.co/WsVf4Yv/mcduck-meme.png" alt="Najbogatszy kaczor w kryptowalutach">
-    <button onclick="window.location.href='#presale'">Dołącz do presale</button>
+    <button onclick="window.open('https://www.pinksale.finance/', '_blank')">Dołącz do presale</button>
   </section>
+
+  <!-- Flying Coins -->
+  <script>
+    for(let i=0; i<15; i++){
+      const coin = document.createElement('div');
+      coin.classList.add('coin');
+      coin.style.left = Math.random() * window.innerWidth + 'px';
+      coin.style.animationDuration = 5 + Math.random() * 5 + 's';
+      document.body.appendChild(coin);
+    }
+  </script>
 
   <!-- Presale Section -->
   <section id="presale">
     <h2>Presale</h2>
     <p>Zostań early hodlerem McDuck Blue Coin! Cena: 0.001 $McDuck za token. Minimalny zakup: 100 $McDuck.</p>
-    <button onclick="window.location.href='#'">Kup teraz</button>
+    <button onclick="window.open('https://www.pinksale.finance/', '_blank')">Kup teraz</button>
   </section>
 
   <!-- Listing Section -->
   <section id="listing">
     <h2>Listing & Dexscreener</h2>
-    <p>Token będzie dostępny na Uniswap i BaseSwap. Sprawdź wykres na <a href="https://dexscreener.com/" target="_blank">Dexscreener</a>.</p>
+    <p>Token będzie dostępny na:</p>
+    <div class="dex-icons">
+      <img src="https://cryptologos.cc/logos/uniswap-uni-logo.png" alt="Uniswap">
+      <img src="https://baseswap.org/assets/logo.png" alt="BaseSwap">
+      <img src="https://www.mexc.com/assets/img/mexc-logo.png" alt="DEX MEXC">
+      <img src="https://www.mexc.com/assets/img/mexc-logo.png" alt="CEX MEXC">
+    </div>
+    <p>Sprawdź wykres na <a href="https://dexscreener.com/" target="_blank">Dexscreener</a>.</p>
   </section>
 
   <!-- Tokenomics Section -->
   <section id="tokenomics">
     <h2>Tokenomika</h2>
     <p>Całkowita podaż: 1 000 000 000 McDuck</p>
-    <div class="tokenomics">
-      <div>80% Zespół / Fundacja</div>
-      <div>5% Płynność</div>
-      <div>15% Airdropy / Promocje</div>
+    <div id="tokenChartContainer">
+      <canvas id="tokenChart"></canvas>
     </div>
     <p>Opłaty transakcyjne: 3%, Spalanie: 0,5% każdej transakcji</p>
   </section>
+
+  <script>
+    const ctx = document.getElementById('tokenChart').getContext('2d');
+    const tokenChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Zespół / Fundacja', 'Płynność', 'Airdropy / Promocje'],
+        datasets: [{
+          data: [80, 5, 15],
+          backgroundColor: ['#FFD700', '#00CFFF', '#1B4F9C'],
+          borderColor: '#0A2A5B',
+          borderWidth: 2
+        }]
+      },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+  </script>
 
   <!-- Whitepaper Section -->
   <section id="whitepaper">
@@ -148,9 +215,10 @@
   <section id="roadmap">
     <h2>Roadmap</h2>
     <div class="roadmap">
-      <div>Po presale: Listing na Uniswap i BaseSwap</div>
-      <div>Q4 2026: Listing na CEX Mexc</div>
-      <div>Rozwój ekosystemu VIK</div>
+      <div class="milestone">Po presale: Listing na Uniswap i BaseSwap</div>
+      <div class="milestone">Listing DEX MEXC</div>
+      <div class="milestone">Q4 2026: Listing CEX MEXC</div>
+      <div class="milestone">Rozwój ekosystemu VIK</div>
     </div>
   </section>
 
